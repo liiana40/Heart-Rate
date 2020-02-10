@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <!--
+      JavaScript HeartRate
+
+      Author: M. Liliana Ignat
+      Date: 6/6/2017  
+
+      Filename: index.htm
+   -->
+   <meta charset="utf-8" />
+   <meta name="viewport" content="width=device-width,initial-scale=1.0">
+   <title>HeartRate</title>
+   <link rel="stylesheet" href="styles.css" />
+   <script src="modernizr.custom.05819.js"></script>
+</head>
+
+<body>
+   <header>
+      <h1>
+         HeartRate
+      </h1>
+   </header>
+    <article>
+		<div id="results">
+			<p id = "findOut"></p>
+		</div>
+		
+      <form>
+          <fieldset>
+		  <label for="myAge" id="number">
+              Enter your age:
+            </label>
+            <input type="text" id="myAge" />
+			</fieldset>
+			<fieldset>
+			<button type="button" id ="button">Submit</button>
+		</fieldset>
+     </form>
+   </article>
+   
+   <script type="text/javascript">
+	function calcHeartRate(){
+		var maxRate = 0;
+		var minRate = 0;
+		var subConst = 220;
+		myAge = document.getElementById('myAge');
+		findOut = document.getElementById('resullts');
+		myAge = Number(myAge.value);
+		if ((isNaN(myAge) || myAge == ""))
+			alert('Please enter age number.');
+		else
+		{
+			minRate = (subConst - myAge) * 0.5;
+			maxRate = (subConst - myAge) * 0.85;
+			minRate = Math.floor(minRate);
+			maxRate =  Math.floor(maxRate);
+			document.getElementById("results").innerHTML = minRate+' to '+maxRate+' beats per min';
+		}
+	}
+		// add event listener to Submit button
+	var btn = document.getElementById("button");
+	
+	if (btn.addEventListener){
+		btn.addEventListener("click", calcHeartRate, false);
+	} else if (btn.attachEvent){
+		btn.attachEvent("onclick", calcHeartRate);
+	}
+   </script>
+</body>
+</html>
